@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/compare/v1.8.1...v1.11.0) (2022-08-12)
+
+
+### Features
+
+* [VIC-795] added fork auto sync config ([5cc6e8a](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/5cc6e8ab81e0c7d6f770894ff373e21ef839571b))
+* 🎸 diakonie templates: rm logo, consistent signature ([e1cfa8e](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/e1cfa8e32f2e7f98cfde0cf30f85534b9e2dc934))
+* 🎸 updated email templates ([5f343ae](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/5f343aeed05c3f7f12762f72230faf85d2c137c9))
+* add login path to base url ([9ed7fba](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/9ed7fba49bda6ff27f6ae1acea6114ffe13777ee))
+* added mail templates for reassignement ([e3be924](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/e3be924a9e131f580e04f3f34846a9d45715fe1f))
+* adjusted templates for reassignments ([a350872](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/a350872096f5b25ff84db09156ebcc9ae6b491c2))
+* **ddo-91-mail-templates:** button link to login page ([46b92d0](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/46b92d031812942cea54c6cd345bef4f09a73365))
+* different texts for single or multiple enquiries ([cd54ab7](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/cd54ab728d75c75694fee52515b38910f9508fdc))
+* provide name of initiating consultant ([64386ad](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/64386ad704fe970525e3d23758748c79147d1426))
+* texts for caritas ([6d41661](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/6d41661676c597d5a1322e057b4dcaf02e9f75c0))
+* **ddo-91-mail-templates:** implemented new design for email templates ([682ae20](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/682ae204f30b1221bc17cd228d7950c988b2bdc1))
+* **ddo-91-mail-templates:** updated subject for daily enquiry notification ([c43eb60](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/c43eb60c1103c89e0b18db64513b8c711b6ab886))
+
+
+### Bug Fixes
+
+* 🐛 template fix ([c7bece9](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/c7bece948133055a864c7e1e10d2f95d2cb3f04e))
+* add diakonie prefix to subject ([86219c1](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/86219c1bfb3c5f249e46dff9cd05fb1b83d2b07a))
+* gendered subject ([00892b3](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/00892b3ae3e4271599bd0ac2b6ad586b3c0fe594))
+* increment verion manually for release ([ab3be67](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/ab3be67c26f508dff4bd53e03ae8a469a4e7597f))
+* increment verion manually for release ([cf7f0ef](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/cf7f0effe7afe4cd9d0872beea5f2ca3277484c3))
+* remove name of asker and signature in emial templates ([74cb9c1](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/74cb9c136690a6a93e3327efa56611128a8a0fc2))
+* remove name_sender ([53b98a9](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/commit/53b98a931bf13401d2f8348cee7ec475a6c10dcf))
+
 ## [1.8.0](https://github.com/CaritasDeutschland/caritas-onlineBeratung-mailService/compare/v1.7.0...v1.8.0) (2021-12-14)
 
 
