@@ -9,6 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import java.util.Properties;
+
 /**
  * Contains some general spring boot application configurations
  */
@@ -30,11 +32,20 @@ public class AppConfig {
   }
 
   @Bean("emailsender") // need to define it for spring-actuator
-  public JavaMailSender getJavaMailSender(@Value("${spring.mail.host}") String host,
-      @Value("${spring.mail.port}") int port) {
+  public JavaMailSender getJavaMailSender(
+    @Value("${spring.mail.host}") String host,
+    @Value("${spring.mail.port}") int port
+  ) {
     final JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
     javaMailSender.setHost(host);
     javaMailSender.setPort(port);
+
+    Properties props = javaMailSender.getJavaMailProperties();
+    props.put("mail.transport.protocol", "smtp");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.debug", "true");
+
     return javaMailSender;
   }
 
