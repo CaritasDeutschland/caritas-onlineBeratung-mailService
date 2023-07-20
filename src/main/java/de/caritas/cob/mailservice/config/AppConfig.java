@@ -34,8 +34,8 @@ public class AppConfig {
   @Bean("emailsender") // need to define it for spring-actuator
   public JavaMailSender getJavaMailSender(@Value("${spring.mail.host}") String host,
       @Value("${spring.mail.port}") int port,
-      @Value("${spring.mail.username") String username,
-      @Value("${spring.mail.password") String password) {
+      @Value("${spring.mail.username}") String username,
+      @Value("${spring.mail.password}") String password) {
     final JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
     javaMailSender.setHost(host);
     javaMailSender.setPort(port);
