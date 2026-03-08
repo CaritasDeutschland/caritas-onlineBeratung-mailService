@@ -1,19 +1,18 @@
 package de.caritas.cob.mailservice.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.client.RestTemplate;
 
-/**
- * Contains some general spring boot application configurations
- */
+/** Contains some general spring boot application configurations */
 @Configuration
 @ComponentScan(basePackages = {"de.caritas.cob.mailservice"})
+@EnableCaching
 public class AppConfig {
 
   /**
@@ -29,13 +28,8 @@ public class AppConfig {
     return validatorFactoryBean;
   }
 
-  @Bean("emailsender") // need to define it for spring-actuator
-  public JavaMailSender getJavaMailSender(@Value("${spring.mail.host}") String host,
-      @Value("${spring.mail.port}") int port) {
-    final JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-    javaMailSender.setHost(host);
-    javaMailSender.setPort(port);
-    return javaMailSender;
+  @Bean
+  public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    return builder.build();
   }
-
 }

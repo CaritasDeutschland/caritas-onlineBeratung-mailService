@@ -1,7 +1,10 @@
 package de.caritas.cob.mailservice.config;
 
+import de.caritas.cob.mailservice.api.TranslationMessageSource;
+import de.caritas.cob.mailservice.api.service.TranslationService;
 import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -18,12 +21,12 @@ public class ThymeleafConfig {
   @Value("${template.use.custom.resources.path}")
   private boolean useCustomResourcesPath;
 
-
   /**
-   * Based on the {@link ThymeleafConfig#useCustomResourcesPath} value this method creates the right template resolver.
-   * useCustomResourcesPath == true -> {@link ThymeleafConfig#htmlFileTemplateResolver()}
-   * useCustomResourcesPath == true -> {@link ThymeleafConfig#htmlClassLoaderTemplateResolver()}
-   * 
+   * Based on the {@link ThymeleafConfig#useCustomResourcesPath} value this method creates the right
+   * template resolver. useCustomResourcesPath == true -> {@link
+   * ThymeleafConfig#htmlFileTemplateResolver()} useCustomResourcesPath == true -> {@link
+   * ThymeleafConfig#htmlClassLoaderTemplateResolver()}
+   *
    * @return ClassLoaderTemplateResolver.
    */
   @Bean
@@ -42,12 +45,18 @@ public class ThymeleafConfig {
   }
 
   private ITemplateResolver htmlClassLoaderTemplateResolver() {
-    ClassLoaderTemplateResolver emailClassLoaderTemplateResolver = new ClassLoaderTemplateResolver();
+    ClassLoaderTemplateResolver emailClassLoaderTemplateResolver =
+        new ClassLoaderTemplateResolver();
     emailClassLoaderTemplateResolver.setOrder(2);
     emailClassLoaderTemplateResolver.setPrefix("/templates/");
     emailClassLoaderTemplateResolver.setSuffix(".html");
     emailClassLoaderTemplateResolver.setTemplateMode(TemplateMode.HTML);
     emailClassLoaderTemplateResolver.setCharacterEncoding(StandardCharsets.UTF_8.name());
     return emailClassLoaderTemplateResolver;
+  }
+
+  @Bean
+  public MessageSource messageSource(TranslationService translationService) {
+    return new TranslationMessageSource(translationService);
   }
 }

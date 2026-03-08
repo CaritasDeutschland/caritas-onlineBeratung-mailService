@@ -21,15 +21,13 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("testing")
 class ResourceIT {
 
-  private static final String TEMPLATES_DIR = ResourcePatternResolver.CLASSPATH_URL_PREFIX
-      + "templates/";
+  private static final String TEMPLATES_DIR =
+      ResourcePatternResolver.CLASSPATH_URL_PREFIX + "templates/";
   private static final String DESC_FILE_PATTERN = "*.json";
 
-  @Autowired
-  private ObjectMapper objectMapper;
+  @Autowired private ObjectMapper objectMapper;
 
-  @Autowired
-  private ResourcePatternResolver resourceResolver;
+  @Autowired private ResourcePatternResolver resourceResolver;
 
   @Test
   void descriptionShouldDefineDefaultLanguageAndExistingTemplate() throws IOException {
@@ -61,11 +59,12 @@ class ResourceIT {
       var templates = desc.getHtmlTemplateFilename();
       assertTrue(templates.size() > 0);
 
-      templates.forEach((languageCode, templateFilename) -> {
-        var templatePath = TEMPLATES_DIR + templateFilename;
-        var templateResource = resourceResolver.getResource(templatePath);
-        assertTrue(templateResource.exists());
-      });
+      templates.forEach(
+          (languageCode, templateFilename) -> {
+            var templatePath = TEMPLATES_DIR + templateFilename;
+            var templateResource = resourceResolver.getResource(templatePath);
+            assertTrue(templateResource.exists());
+          });
     }
   }
 
@@ -101,7 +100,7 @@ class ResourceIT {
   }
 
   @Test
-  void descriptionShouldHaveDefaultSubject() throws IOException {
+  void descriptionShouldHaveSubjectKey() throws IOException {
     var jsonFiles = resourceResolver.getResources(TEMPLATES_DIR + DESC_FILE_PATTERN);
     var defaultLanguage = new MailDTO().getLanguage();
     assertTrue(jsonFiles.length > 8);
@@ -109,23 +108,11 @@ class ResourceIT {
     for (Resource jsonFile : jsonFiles) {
       var json = Files.readString(jsonFile.getFile().toPath());
       var desc = objectMapper.readValue(json, TemplateDescription.class);
-      var subjects = desc.getSubject();
-      assertNotNull(subjects.get(defaultLanguage));
-    }
-  }
-
-  @Test
-  void descriptionSubjectsAndTemplateFilesShouldBeCorresponding() throws IOException {
-    var jsonFiles = resourceResolver.getResources(TEMPLATES_DIR + DESC_FILE_PATTERN);
-    assertTrue(jsonFiles.length > 8);
-
-    for (Resource jsonFile : jsonFiles) {
-      var json = Files.readString(jsonFile.getFile().toPath());
-      var desc = objectMapper.readValue(json, TemplateDescription.class);
-      var templateLanguages = desc.getHtmlTemplateFilename().keySet();
-      var subjectLanguages = desc.getSubject().keySet();
-
-      assertEquals(templateLanguages, subjectLanguages);
+      var subjectKey = desc.getSubject();
+      assertNotNull(
+          subjectKey,
+          "Json file with resource description does not contain subject key: %s".formatted(
+              jsonFile.getFilename()));
     }
   }
 }
